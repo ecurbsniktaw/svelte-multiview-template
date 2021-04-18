@@ -19,6 +19,7 @@
   <style>
   </style>
   
+  <!-- Display the navigation bar. -->
   <Navbar
 	on:oneclicked={navClicked}
 	on:twoclicked={navClicked}
