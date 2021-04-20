@@ -1,0 +1,18 @@
+Log File for projects/svelte-mytemplate
+=======================================
+
+--Simplify event handling
+
+We have two event handler functions in App: navClicked and pClicked.
+The first changes the view based on which navigation link has been
+clicked. The second changes the value of a variable (which then
+updates the display).
+
+In both cases, event.detail is used: to determine which view to
+switch to, and what value to put into the variable.
+
+Lets replace these two functions with a single event handler, and
+in the functions that run when a click happens, pass an object with
+two elements: type of event (view switch or parameter value set),
+and value (what is now being passed as event.detail).
+

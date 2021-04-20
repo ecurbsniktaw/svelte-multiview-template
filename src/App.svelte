@@ -10,8 +10,14 @@
   
 	let whichView = 'one'; // At startup, show the first view.
 
+	let theParam = "123";
+
 	function navClicked(event) {
 		whichView = event.detail;
+	}
+
+	function pClicked(event) {
+		theParam = event.detail;
 	}
   
   </script>
@@ -26,13 +32,22 @@
 	on:threeclicked={navClicked}
   />
 
+  The Parameter Value is {theParam}<br><br>
+
   {#if whichView=='one'}
-	<View1 />
+	<View1 
+	on:oneclicked={navClicked}
+	on:twoclicked={navClicked}
+	on:threeclicked={navClicked}
+	on:paramClicked={pClicked}
+	/>
 
   {:else if whichView=='two'}
 	<View2 />
 	  
   {:else}
-  	<View3 />
+	  <View3 
+	  on:paramClicked={pClicked}
+	  />
 
   {/if}
