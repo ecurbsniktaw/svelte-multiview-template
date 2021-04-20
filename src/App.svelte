@@ -1,53 +1,36 @@
 <script>
-
-// App.svelte
-//	This is part of a template for multi-view Svelte apps.
-
 	import Navbar from "./Navbar.svelte";
 	import View1  from "./View1.svelte";
 	import View2  from "./View2.svelte";
 	import View3  from "./View3.svelte";
   
-	let whichView = 'one'; // At startup, show the first view.
+	// At startup, show the first view and initialize the parameter.
+	let whichView = 'one';
+	let theParam  = "123";
 
-	let theParam = "123";
-
-	function navClicked(event) {
-		whichView = event.detail;
+	function handleClick(event) {
+		let whatHappened = event.detail.what;
+		let whatValue    = event.detail.value;
+		if (whatHappened=='switchView') {
+			whichView = whatValue;
+		}
+		else if (whatHappened=='setValue') {
+			theParam = whatValue;
+		}
 	}
-
-	function pClicked(event) {
-		theParam = event.detail;
-	}
-  
   </script>
   
-  <style>
-  </style>
-  
-  <!-- Display the navigation bar. -->
-  <Navbar
-	on:oneclicked={navClicked}
-	on:twoclicked={navClicked}
-	on:threeclicked={navClicked}
-  />
+  <Navbar on:mouseclicked={handleClick} />
 
   The Parameter Value is {theParam}<br><br>
 
   {#if whichView=='one'}
-	<View1 
-	on:oneclicked={navClicked}
-	on:twoclicked={navClicked}
-	on:threeclicked={navClicked}
-	on:paramClicked={pClicked}
-	/>
+	<View1 on:mouseclicked={handleClick} />
 
   {:else if whichView=='two'}
-	<View2 />
+	<View2 on:mouseclicked={handleClick} />
 	  
   {:else}
-	  <View3 
-	  on:paramClicked={pClicked}
-	  />
+	<View3 on:mouseclicked={handleClick} />
 
   {/if}

@@ -2,16 +2,42 @@
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
-    function oneClicked() {
-      dispatch("oneclicked", 'one');
-    }
-    function twoClicked() {
-      dispatch("twoclicked", 'two');
-    }
-    function threeClicked() {
-      dispatch("threeclicked", 'three');
+    function mouseClicked(what, value) {
+        let eventObj = {
+            what: what,
+            value: value
+        }
+        dispatch("mouseclicked", eventObj);
     }
 </script>
+
+<ul class="topnav">
+
+    <li>
+        <a
+          href
+          on:click|preventDefault={()=>mouseClicked('switchView', 'one')}>
+          ViewOne
+        </a>
+    </li>
+  
+    <li>
+        <a
+          href
+          on:click|preventDefault={()=>mouseClicked('switchView', 'two')}>
+          ViewTwo
+        </a>
+    </li>
+  
+    <li>
+        <a
+          href
+          on:click|preventDefault={()=>mouseClicked('switchView', 'three')}>
+          ViewThree
+        </a>
+    </li>
+  
+</ul>
 
 <style>
 
@@ -47,31 +73,3 @@
     }
 
 </style>
-
-<ul class="topnav">
-
-    <li>
-      <a
-        href
-        on:click|preventDefault={oneClicked}>
-        ViewOne
-      </a>
-    </li>
-
-    <li>
-        <a
-          href
-          on:click|preventDefault={twoClicked}>
-          ViewTwo
-        </a>
-    </li>
-  
-    <li>
-        <a
-          href
-          on:click|preventDefault={threeClicked}>
-          ViewThree
-        </a>
-    </li>
-  
-</ul>
