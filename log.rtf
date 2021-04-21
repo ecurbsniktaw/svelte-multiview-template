@@ -1,0 +1,96 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 CourierNewPSMT;\f1\fmodern\fcharset0 CourierNewPS-BoldMT;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red0\green0\blue0;\red107\green0\blue1;
+\red255\green255\blue255;\red0\green0\blue255;\red251\green0\blue7;\red144\green1\blue18;}
+{\*\expandedcolortbl;;\cssrgb\c1680\c19835\c100000;\cssrgb\c0\c0\c0;\cssrgb\c50196\c0\c0;
+\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c0\c0;\cssrgb\c63922\c8235\c8235;}
+\margl1440\margr1440\vieww12640\viewh16240\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \
+Log File for projects/svelte-mytemplate\
+=======================================\
+\
+--Simplify event handling (started 4/19/21)\
+\
+We have two event handler functions in App: navClicked and pClicked.\
+The first changes the view based on which navigation link has been\
+clicked. The second changes the value of a variable (which then\
+updates the display).\
+\
+In both cases, event.detail is used: to determine which view to\
+switch to, and what value to put into the variable.\
+\
+Lets replace these two functions with a single event handler, and\
+in the functions that run when a click happens, pass an object with\
+two elements: type of event (view switch or parameter value set),\
+and value (what is now being passed as event.detail).\
+\
+Done.\
+\
+Here's the event handler code in App.svelte:\
+\
+
+\f1\b \cf2 	function handleClick(event) \{\
+		let whatHappened = event.detail.what;\
+		let whatValue    = event.detail.value;\
+		if (whatHappened=='switchView') \{\
+			whichView = whatValue;\
+		\}\
+		else if (whatHappened=='setValue') \{\
+			theParam = whatValue;\
+		\}\
+	\}\
+\
+
+\f0\b0 \cf3 and when, in App.svelte, we invoke a component that may raise an event, \
+we do something like this:\
+
+\f1\b \cf2 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\b0\fs24 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 	
+\f1\b\fs28 \cf2 <\strokec3 View1 \strokec6 on\strokec3 :mouseclicked=\strokec6 \{\strokec3 handleClick\strokec6 \}\strokec3  \strokec4 />\cb1 \strokec3 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 In a component, e.g. View1, a link that raises an event looks like:\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\b \cf2 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 <a\cb1 \strokec3 \
+\cb5 \strokec7 href\cb1 \strokec3 \
+\cb5 \strokec6 on\strokec3 :click|preventDefault=\strokec6 \{\strokec3 ()\strokec6 =>\strokec3 mouseClicked(\strokec8 'switchView'\strokec3 , \strokec8 'two'\strokec3 )\strokec6 \}\strokec4 >\cb1 \strokec3 \
+\cb5 Click to go to view two\cb1 \
+\cb5 \strokec4 </a>\cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 \
+And the code that raises events is:\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\b \cf2 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3     \strokec6 import\strokec3  \{ createEventDispatcher \} \strokec6 from\strokec3  \strokec8 "svelte"\strokec3 ;\cb1 \
+\cb5     \strokec6 const\strokec3  dispatch = createEventDispatcher();\cb1 \
+\
+\cb5     \strokec6 function\strokec3  mouseClicked(what, value) \{\cb1 \
+\cb5         \strokec6 let\strokec3  eventObj = \{\cb1 \
+\cb5             what: what,\cb1 \
+\cb5             value: value\cb1 \
+\cb5         \}\cb1 \
+\cb5         dispatch(\strokec8 "mouseclicked"\strokec3 , eventObj);\cb1 \
+\cb5     \}\cb1 \
+
+\f2\b0\fs24 \cf3 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 Problem with this code: the raise event code is duplicated in every\
+component that raises events. Want to write that code only once.\
+\
+\
+\
+}

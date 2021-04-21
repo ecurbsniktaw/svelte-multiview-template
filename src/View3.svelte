@@ -20,4 +20,3 @@ href
 on:click|preventDefault={()=>mouseClicked('setValue', '5968')}>
 Set parameter==5968
 </a>
-
