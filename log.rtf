@@ -9,11 +9,13 @@
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs28 \cf0 \
-Log File for projects/svelte-mytemplate\
-=======================================\
+
+\f1\b\fs32 Log File for projects/svelte-mytemplate
+\f0\b0\fs28 \
 \
---Simplify event handling (started 4/19/21)\
-\
+
+\f1\b Simplify event handling (4/19/21 - 4/21
+\f0\b0 )\
 We have two event handler functions in App: navClicked and pClicked.\
 The first changes the view based on which navigation link has been\
 clicked. The second changes the value of a variable (which then\
@@ -89,7 +91,8 @@ And the code that raises events is:\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs28 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 Problem with this code: the raise event code is duplicated in every\
-component that raises events. Want to write that code only once.\
+component that raises events. Want to write that code only once...\
+Tried several approaches to this, but none worked.\
 \
 \
 \
