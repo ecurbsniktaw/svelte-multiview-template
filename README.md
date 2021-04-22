@@ -74,3 +74,8 @@ Set parameter==42
 </a>
 ```
 
+## To Do
+
+- Generalize the setValue option in the handleClicked function so that any variable can be set.
+- Add code that changes a watched value by entering it into a form field.
+- Find a way to avoid writing the mouseClicked code in every component.
