@@ -56,3 +56,21 @@ Click to go to view two
 </a>
 ```
 
+## Links that change a value that updates the DOM
+
+As an illustration of updating the DOM automatically when a value changes, App.svelte includes this code:
+
+```
+The Parameter Value is {theParam}
+```
+
+Clicking a link like the following will update the display to show the new parameter value:
+
+```
+<a
+href
+on:click|preventDefault={()=>mouseClicked('setValue', '42')}>
+Set parameter==42
+</a>
+```
+
