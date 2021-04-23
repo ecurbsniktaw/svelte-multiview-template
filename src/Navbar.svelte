@@ -2,10 +2,11 @@
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
-    function mouseClicked(what, value) {
+    function mouseClicked(what, value, name) {
         let eventObj = {
             what: what,
-            value: value
+            value: value,
+            name: name
         }
         dispatch("mouseclicked", eventObj);
     }
@@ -19,7 +20,7 @@
           on:click|preventDefault={()=>mouseClicked('switchView', 'one')}>
           ViewOne
         </a>
-    </li>
+    </li>`
   
     <li>
         <a

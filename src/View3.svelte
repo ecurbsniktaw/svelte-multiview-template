@@ -2,21 +2,20 @@
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
-    function mouseClicked(what, value) {
+    function mouseClicked(what, value, name) {
         let eventObj = {
             what: what,
-            value: value
+            value: value,
+            name: name
         }
         dispatch("mouseclicked", eventObj);
     }
 </script>
 
-View number 3
-
-<br><br>
+<h3>View Number Three</h3>
 
 <a
 href
-on:click|preventDefault={()=>mouseClicked('setValue', '5968')}>
-Set parameter==5968
+on:click|preventDefault={()=>mouseClicked('setValue', '5968', 'one')}>
+Set the number to 5968
 </a>

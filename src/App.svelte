@@ -4,30 +4,55 @@
 	import View2  from "./View2.svelte";
 	import View3  from "./View3.svelte";
   
-	// At startup, show the first view and initialize the parameter.
-	let whichView = 'one';
-	let theParam  = "123";
+	// At startup, show the first view and initialize the parameter values.
+	let domView;
+	let domValue = [];
+
+	function resetDisplay () {
+		domView = 'one';
+		domValue['one']  = "123";
+		domValue['two']  = "Shakespeare";
+	}
 
 	function handleClick(event) {
 		let whatHappened = event.detail.what;
 		let whatValue    = event.detail.value;
+
 		if (whatHappened=='switchView') {
-			whichView = whatValue;
+			domView = whatValue;
 		}
+
 		else if (whatHappened=='setValue') {
-			theParam = whatValue;
+			let whatName = event.detail.name;
+			domValue[whatName] = whatValue;
+		}
+
+		else if (whatHappened=='reset') {
+			resetDisplay();
+		}
+
+		else {
+			alert('In function handleClick in App.svelte: incorrect whatHappened value [' + 
+			whatHappened + 
+			'] when handling a custom mouseclicked event.')
 		}
 	}
+
+	resetDisplay();
+
   </script>
   
   <Navbar on:mouseclicked={handleClick} />
 
-  The Parameter Value is {theParam}<br><br>
+  --start of output from App.svelte<br>
+  The number is {domValue['one']}<br>
+  The author is {domValue['two']}<br>
+  --end of output from App.svelte
 
-  {#if whichView=='one'}
+  {#if domView=='one'}
 	<View1 on:mouseclicked={handleClick} />
 
-  {:else if whichView=='two'}
+  {:else if domView=='two'}
 	<View2 on:mouseclicked={handleClick} />
 	  
   {:else}
