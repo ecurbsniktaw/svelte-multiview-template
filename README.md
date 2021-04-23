@@ -24,7 +24,7 @@ function handleClick(event) {
   let whatValue    = event.detail.value;
 
   if (whatHappened=='switchView') {
-			domView = whatValue;
+    domView = whatValue;
 		}
 
   else if (whatHappened=='setValue') {
@@ -40,8 +40,8 @@ function handleClick(event) {
     alert('In function handleClick in App.svelte: incorrect whatHappened value [' + 
     whatHappened + 
     '] when handling a custom mouseclicked event.')
-		}
-	}
+    }
+  }
 ```
 
 ## Links in Views and in the Nav Component
