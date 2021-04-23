@@ -25,16 +25,16 @@ function handleClick(event) {
 
   if (whatHappened=='switchView') {
     domView = whatValue;
-		}
+  }
 
   else if (whatHappened=='setValue') {
     let whatName = event.detail.name;
     domValue[whatName] = whatValue;
-		}
+  }
 
   else if (whatHappened=='reset') {
     resetDisplay();
-		}
+  }
 
   else {
     alert('In function handleClick in App.svelte: incorrect whatHappened value [' + 
