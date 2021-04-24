@@ -16,6 +16,6 @@
 
 <a
 href
-on:click|preventDefault={()=>mouseClicked('setValue', '5968', 'one')}>
+on:click|preventDefault={()=>mouseClicked('setValue', '5968', 'number')}>
 Set the number to 5968
 </a>

@@ -9,9 +9,9 @@
 	let domValue = [];
 
 	function resetDisplay () {
-		domView = 'one';
-		domValue['one']  = "123";
-		domValue['two']  = "Shakespeare";
+		domView             = 'one';
+		domValue['number']  = "123";
+		domValue['author']  = "Shakespeare";
 	}
 
 	function handleClick(event) {
@@ -44,10 +44,8 @@
   
   <Navbar on:mouseclicked={handleClick} />
 
-  --start of output from App.svelte<br>
-  The number is {domValue['one']}<br>
-  The author is {domValue['two']}<br>
-  --end of output from App.svelte
+  The number is {domValue['number']}<br>
+  The author is {domValue['author']}<br>
 
   {#if domView=='one'}
 	<View1 on:mouseclicked={handleClick} />

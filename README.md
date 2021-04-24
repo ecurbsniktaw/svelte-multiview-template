@@ -1,6 +1,8 @@
 # svelte-multiview-template
 This template illustrates use of custom events as a method for switching between views in a Svelte application. 
 
+The app is hosted here: https://brucewatkins.org/projects/sveltemultiview/
+
 ## App.svelte
 
 The App component outputs the navigation bar, and then decides which view to output based on the value of the "whichView" variable.
@@ -44,7 +46,7 @@ function handleClick(event) {
   }
 ```
 
-## Links in Views and in the Nav Component
+## Links in View Components and in the Nav Component
 
 Each component that displays a view (and also the Navbar component) needs to include this code:
 
@@ -76,8 +78,8 @@ Click to go to view two
 As an illustration of updating the DOM automatically when one or more values change, App.svelte includes this code:
 
 ```
-The number is {domValue['one']}<br>
-The author is {domValue['two']}<br>
+The number is {domValue['number']}<br>
+The author is {domValue['author']}<br>
 ```
 
 Clicking a link like the following will update the display to show the new parameter value:
@@ -85,7 +87,7 @@ Clicking a link like the following will update the display to show the new param
 ```
 <a
 href
-on:click|preventDefault={()=>mouseClicked('setValue', '42', 'one')}>
+on:click|preventDefault={()=>mouseClicked('setValue', '42', 'number')}>
 Set the number to 42
 </a>
 ```

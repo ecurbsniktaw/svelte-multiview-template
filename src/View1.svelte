@@ -17,34 +17,34 @@
 <a
 href
 on:click|preventDefault={()=>mouseClicked('switchView', 'two')}>
-Click to go to view two
+Go to view two
 </a>
 
-<br><br>
+|
 
 <a
 href
-on:click|preventDefault={()=>mouseClicked('setValue', '42', 'one')}>
+on:click|preventDefault={()=>mouseClicked('setValue', '42', 'number')}>
 Set the number to 42
 </a>
 
-<br><br>
+|
 
 <a
 href
-on:click|preventDefault={()=>mouseClicked('setValue', 'Homer', 'two')}>
+on:click|preventDefault={()=>mouseClicked('setValue', 'Homer', 'author')}>
 Set the author to Homer
 </a>
 
-<br><br>
+|
 
 <a
 href
 on:click|preventDefault={()=>mouseClicked('reset')}>
-Reset the parameters
+Reset the values
 </a>
 
-<br><br>
+|
 
 <a
 href
